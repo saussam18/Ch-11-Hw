@@ -1,5 +1,6 @@
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 
@@ -35,11 +36,11 @@ public class Main {
         countCommon(list3, list4);
         //Problem 8
         HashSet<String> set = new HashSet<>();
-        /*set.add("king");
+        set.add("king");
         set.add("why");
         set.add("LOL");
         set.add("Probably");
-        set.add("kek");*/
+        set.add("kek");
         maxLength(set);
         //Problem 9
         HashSet<Integer> set2 = new HashSet<>();
@@ -49,8 +50,58 @@ public class Main {
         set2.add(4);
         set2.add(1);
         hasOdd(set2);
+        //Problem 10
+        removeEvens(set);
+        //Problem 12
+        ArrayList<String> list5 = new ArrayList<String>();
+        list5.add("kek");
+        list5.add("kek");
+        list5.add("like");
+        list5.add("dude");
+        list5.add("kek");
+        contains3(list5);
+        //Problem 14
+        HashMap<String, Integer> map2 = new HashMap<String, Integer>();
+        HashMap<String, Integer> map3 = new HashMap<String, Integer>();
+        intersect()
     }
-    public static void hasOdd(HashSet<Integer> set){
+    public static void contains3 (ArrayList<String> list){
+        HashMap<String, Integer> map = new HashMap<String, Integer>();
+        Iterator<String> itr = list.iterator();
+        boolean contains = false;
+        System.out.println(list);
+        while(itr.hasNext()){
+            String check = itr.next();
+            if(map.containsKey(check) == false){
+                map.put(check, 0);
+            }
+                if(map.containsKey(check)){
+                int x = map.get(check);
+                x++;
+                map.put(check, x);
+                System.out.println(map);
+            }
+            if(map.get(check) == 3){
+                contains = true;
+                break;
+            }
+        }
+        System.out.println(contains);
+        }
+
+        public static void removeEvens (HashSet<String> set){
+        System.out.println(set);
+        Iterator<String> itr = set.iterator();
+        while(itr.hasNext()){
+            String check = itr.next();
+            if(check.length() % 2 == 0){
+                itr.remove();
+            }
+        }
+        System.out.println(set);
+    }
+
+        public static void hasOdd(HashSet<Integer> set){
         boolean check = false;
         Iterator<Integer> itr = set.iterator();
         while(itr.hasNext()){
