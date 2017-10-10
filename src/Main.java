@@ -1,8 +1,5 @@
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
+import java.util.*;
 
 public class Main {
 
@@ -63,9 +60,83 @@ public class Main {
         //Problem 14
         HashMap<String, Integer> map2 = new HashMap<String, Integer>();
         HashMap<String, Integer> map3 = new HashMap<String, Integer>();
-        intersect()
+        map2.put("Bob", 77);
+        map2.put("Carol", 67);
+        map2.put("Bill", 57);
+        map2.put("Paul", 47);
+        map2.put("Guy", 12);
+        map3.put("Bob", 77);
+        map3.put("Carol", 22);
+        map3.put("Paul", 11);
+        map3.put("Ian", 42);
+        map3.put("Guy", 12);
+        intersect(map2, map3);
+        //Problem 15
+        mode(list3);
+        //Problem 18
+        HashMap<Integer, String> map4 = new HashMap<Integer, String>();
+        map4.put(42, "Guy");
+        map4.put(22, "Guy");
+        map4.put(12, "Bob");
+        map4.put(47, "Rick");
+        map4.put(55, "Rick");
+        map4.put(99, "Judy");
+        reverse(map4);
     }
-    public static void contains3 (ArrayList<String> list){
+        public static void reverse (HashMap<Integer, String> map){
+            HashMap<String, Set<Integer>> map2 = new HashMap<String, Set<Integer>>();
+            for (Integer key : map.keySet()) {
+                if(map2.containsKey(map.get(key)) == false){
+                    map2.put(map.get(key), new TreeSet<Integer>());
+                    map2.get(map.get(key)).add(key);
+                }else{
+                    map2.get(map.get(key)).add(key);
+                }
+            }
+            System.out.println(map2);
+        }
+
+        public static void mode (ArrayList<Integer> list){
+        HashMap<Integer, Integer> map2 = new HashMap<Integer, Integer>();
+        Iterator<Integer> itr = list.iterator();
+        while(itr.hasNext()){
+            int check = itr.next();
+            if(map2.containsKey(check) == false){
+                map2.put(check, 1);
+            }else{
+                int x = map2.get(check);
+                x++;
+                map2.put(check, x);
+            }
+        }
+        int max = 0;
+        int it = 0;
+        for (Integer key : map2.keySet()) {
+            int check = map2.get(key);
+            if(check > max){
+                 max = check;
+                 it = key;
+            }
+        }
+        System.out.println(it + " is the mode with " + max);
+
+    }
+
+        public static void intersect ( HashMap<String, Integer> map1,  HashMap<String, Integer> map2) {
+        HashMap<String, Integer> map3 = new HashMap<String, Integer>();
+        for (String key : map1.keySet()) {
+            if(map1.containsKey(key) && map2.containsKey(key)){
+                int check1 = map1.get(key);
+                int check2 = map2.get(key);
+                if(check1 == check2){
+                    map3.put(key, check1);
+                }
+            }
+        }
+        System.out.println(map3);
+    }
+
+        public static void contains3 (ArrayList<String> list){
         HashMap<String, Integer> map = new HashMap<String, Integer>();
         Iterator<String> itr = list.iterator();
         boolean contains = false;
